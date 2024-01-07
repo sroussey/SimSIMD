@@ -108,7 +108,6 @@ jobs:
 
   build_javascript:
     name: Build JavaScript
-    runs-on: ${{ matrix.os }}
     needs: versioning
     strategy:
       fail-fast: false
@@ -116,6 +115,7 @@ jobs:
         arch:
           - x64
           - x86
+          - arm
         os:
           - macos-latest
           - ubuntu-22.04
@@ -125,6 +125,9 @@ jobs:
             os: macos-latest
           - arch: x86
             os: ubuntu-22.04
+          - arch: arm
+            os: macos-latest
+    runs-on: ${{ matrix.os }}
     env:
       CC: gcc-12
       CXX: g++-12
