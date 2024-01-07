@@ -28,7 +28,6 @@ jobs:
 
   rebase:
     name: Rebase Dev. Branch
-    if: github.ref_name == 'main'
     needs: versioning
     runs-on: ubuntu-22.04
     steps:
@@ -183,13 +182,8 @@ jobs:
       - name: Look for links
         run: find . -type f -links +1
 
-      - name: Test publish
-        run: npm publish --dry-run
-        if: github.ref != 'refs/heads/main'
-
       - name: Publish
         uses: JS-DevTools/npm-publish@v3
-        if: github.ref == 'refs/heads/main'
         with:
           token: ${{ secrets.NPM_TOKEN }}
           access: public
