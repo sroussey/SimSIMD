@@ -176,6 +176,9 @@ jobs:
         with:
           path: prebuilds
 
+      - name: Look for links
+        run: find . -type f -links +1
+
       - name: Test publish
         run: npm publish --dry-run
         if: github.ref != 'refs/heads/main'
