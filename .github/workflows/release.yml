@@ -146,7 +146,7 @@ jobs:
           sudo apt install gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
 
       - run: npm ci --ignore-scripts
-      - run: npm run prebuild
+      - run: npm run prebuild-single
         if: matrix.os != 'macos-latest'
       - run: npm run prebuild-darwin-x64+arm64
         env:

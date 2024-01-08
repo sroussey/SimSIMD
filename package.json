@@ -5,7 +5,6 @@
   "homepage": "https://github.com/ashvardanian/simsimd",
   "author": "Ash Vardanian",
   "license": "Apache 2.0",
-  "main": "javascript/simsimd.js",
   "keywords": [
     "vector",
     "distance",
@@ -24,13 +23,20 @@
   ],
   "scripts": {
     "install": "node-gyp-build",
-    "prebuild": "prebuildify --napi --strip --target=10.4.0",
+    "prebuild-single": "prebuildify --napi --strip --target=10.4.0",
     "prebuild-arm64": "prebuildify --arch arm64 --napi --strip --target=10.4.0",
     "prebuild-darwin-x64+arm64": "prebuildify --arch arm64+x64 --napi --strip --target=10.4.0",
     "test": "node --test ./javascript/test.mjs",
     "bench": "node ./javascript/bench.mjs"
   },
-  "gypfile": true,
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "exports": {
+      ".": {
+          "import": "./dist/esm/index.js",
+          "require": "./dist/cjs/index.js"
+      }
+  },
   "engines": {
     "node": "~10 >=10.20 || >=12.17"
   },
