@@ -1,6 +1,6 @@
 import build from "node-gyp-build";
 import * as path from "node:path";
-import { existsSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { getFileName, getRoot } from "bindings";
 
 const builddir = getBuildDir(getDirName());
@@ -96,6 +96,12 @@ export default {
 
 function getBuildDir(dir: string) {
   console.log(dir);
+  const files = readdirSync(dir);
+
+  files.forEach((file) => {
+    console.log("f", dir, file);
+  });
+
   if (existsSync(path.join(dir, "build"))) return dir;
   if (existsSync(path.join(dir, "prebuilds"))) return dir;
   if (existsSync(path.join(dir, "node_modules")))
