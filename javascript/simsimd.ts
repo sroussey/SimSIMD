@@ -95,10 +95,11 @@ export default {
 // utility functions to help find native builds
 
 function getBuildDir(dir: string) {
+  console.log(dir);
   if (existsSync(path.join(dir, "build"))) return dir;
   if (existsSync(path.join(dir, "prebuilds"))) return dir;
   if (existsSync(path.join(dir, "node_modules")))
-    return getBuildDir(path.join(dir, "node_modules/simsimd"));
+    return getBuildDir(path.join(dir, "node_modules/@sroussey/simsimd"));
   if (dir === "/") throw new Error("Could not find native build for simsimd");
   return getBuildDir(path.join(dir, ".."));
 }
