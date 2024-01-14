@@ -95,17 +95,16 @@ export default {
 // utility functions to help find native builds
 
 function getBuildDir(dir: string) {
-  console.log(dir);
-  const files = readdirSync(dir);
-
-  files.forEach((file) => {
-    console.log("f", dir, file);
-  });
-
   if (existsSync(path.join(dir, "build"))) return dir;
   if (existsSync(path.join(dir, "prebuilds"))) return dir;
   if (path.basename(dir) === ".next") {
-    const sideways = path.join(dir, "..", "node_modules", "@sroussey/simsimd");
+    const sideways = path.join(
+      dir,
+      "..",
+      "node_modules",
+      "@sroussey",
+      "simsimd"
+    );
     if (existsSync(sideways)) return getBuildDir(sideways);
   }
   const parentdir = path.resolve(dir, "..");
