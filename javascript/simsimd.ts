@@ -108,6 +108,7 @@ function getBuildDir(dir: string) {
     return getBuildDir(path.join(dir, "node_modules/@sroussey/simsimd"));
   }
   const parentdir = path.resolve(dir, "..");
+  console.log(`dir ${dir} parentdir ${parentdir}`);
   if (dir === "/" || !dir.startsWith(parentdir))
     throw new Error("Could not find native build for simsimd");
   return getBuildDir(parentdir);
