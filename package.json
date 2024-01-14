@@ -1,6 +1,6 @@
 {
   "name": "@sroussey/simsimd",
-  "version": "3.6.17",
+  "version": "3.6.18",
   "description": "Fastest SIMD-Accelerated Vector Similarity Functions for x86 and Arm",
   "homepage": "https://github.com/ashvardanian/simsimd",
   "author": "Ash Vardanian",
@@ -22,7 +22,7 @@
     "f16"
   ],
   "scripts": {
-    "install": "node-gyp-build",
+    "install-none": "node-gyp-build",
     "prebuild-single": "prebuildify --napi --strip --target=10.4.0",
     "prebuild-arm64": "prebuildify --arch arm64 --napi --strip --target=10.4.0",
     "prebuild-darwin-x64+arm64": "prebuildify --arch arm64+x64 --napi --strip --target=10.4.0",
