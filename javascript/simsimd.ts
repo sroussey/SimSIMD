@@ -104,15 +104,18 @@ function getBuildDir(dir: string) {
 
   if (existsSync(path.join(dir, "build"))) return dir;
   if (existsSync(path.join(dir, "prebuilds"))) return dir;
-  if (existsSync(path.join(dir, "node_modules")))
+  if (existsSync(path.join(dir, "node_modules"))) {
     return getBuildDir(path.join(dir, "node_modules/@sroussey/simsimd"));
-  if (dir === "/") throw new Error("Could not find native build for simsimd");
-  return getBuildDir(path.join(dir, ".."));
+  }
+  const parentdir = path.resolve(dir, "..");
+  if (dir === "/" || !dir.startsWith(parentdir))
+    throw new Error("Could not find native build for simsimd");
+  return getBuildDir(parentdir);
 }
 
 function getDirName() {
   try {
-    if (__dirname) return __dirname;
+    if (__dirname) return path.resolve(__dirname);
   } catch (e) {}
-  return getRoot(getFileName());
+  return path.resolve(getRoot(getFileName()));
 }
