@@ -104,8 +104,8 @@ function getBuildDir(dir: string) {
 
   if (existsSync(path.join(dir, "build"))) return dir;
   if (existsSync(path.join(dir, "prebuilds"))) return dir;
-  if (existsSync(path.join(dir, "node_modules"))) {
-    return getBuildDir(path.join(dir, "node_modules/@sroussey/simsimd"));
+  if (dir.endsWith("/.next")) {
+    return getBuildDir(path.join(dir, "../node_modules/@sroussey/simsimd"));
   }
   const parentdir = path.resolve(dir, "..");
   console.log(`dir ${dir} parentdir ${parentdir}`);
